@@ -1,6 +1,7 @@
+import * as path from 'path'
+import * as fs from 'fs'
+
 import test from 'ava'
-import path from 'path'
-import fs from 'fs'
 
 import serializeForTests from './serialize'
 
