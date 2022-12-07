@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`unserialize key pairs correctly, not serialized by self 1`] = `
+{
+  "97YEAY3JO237": "hi",
+}
+`;
+
+exports[`unserialize key pairs correctly, not serialized by self 2`] = `
+{
+  "02YJXTVI6ZOJ": "hi",
+}
+`;
+
+exports[`unserialize key pairs correctly, not serialized by self 3`] = `
+{
+  "X0YJXTVI6ZOJ": "hi",
+}
+`;
+
+exports[`unserialize key pairs correctly, not serialized by self 4`] = `
+{
+  "X0": "hi",
+}
+`;
+
+exports[`unserialize key pairs correctly, not serialized by self 5`] = `
+{
+  "0XYJXTVI6ZOJ": "hi",
+}
+`;
+
+exports[`unserialize key pairs correctly, not serialized by self 6`] = `
+{
+  "0x": "hi",
+}
+`;
+
+exports[`unserialize key pairs correctly, not serialized by self 7`] = `
+{
+  "0N": "hi",
+}
+`;

@@ -1,11 +1,11 @@
 import * as path from 'path'
 import * as fs from 'fs'
 
-import test from 'ava'
+import { test, expect } from '@jest/globals'
 
 import serializeForTests from './serialize'
 
-test('serialize compat with php', async t => {
+test('serialize compat with php', async () => {
   const givenOutput: string = await new Promise((resolve, reject) => {
     fs.readFile(path.join(__dirname, 'serialize.php.out'), 'utf8', (error, result) => {
       if (error) {
@@ -22,6 +22,6 @@ test('serialize compat with php', async t => {
     .split('\n')
   const ourOutput = serializeForTests()
   for (let i = 0, { length } = output; i < length; i += 1) {
-    t.is(output[i], ourOutput[i])
+    expect(output[i]).toEqual(ourOutput[i])
   }
 })

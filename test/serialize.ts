@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file, class-methods-use-this */
 
-import { serialize } from '..'
+import { serialize } from '../src/index'
 
 function serializeForTests() {
   const items = []
