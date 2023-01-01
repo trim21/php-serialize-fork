@@ -1,7 +1,6 @@
-import invariant from 'assert'
-// eslint-disable-next-line import/no-cycle
 import Parser from './parser'
 import { isInteger, getClass, getIncompleteClass, __PHP_Incomplete_Class } from './helpers'
+import * as console from 'console'
 
 export type Options = {
   strict: boolean
@@ -11,7 +10,10 @@ export type Options = {
 function getClassReference(className: string, scope: Record<string, any>, strict: boolean): any {
   let container: any
   const classReference = scope[className]
-  invariant(classReference || !strict, `Class ${className} not found in given scope`)
+  if (!classReference && strict) {
+    throw new TypeError(`Class ${className} not found in given scope`)
+  }
+
   if (classReference) {
     // @ts-ignore
     container = new (getClass(classReference.prototype))()
@@ -93,7 +95,10 @@ function unserializeItem(parser: Parser, scope: Record<string, any>, options: Op
     const payload = parser.getByLength('{', '}', length => parser.readAhead(length))
     const result = getClassReference(name, scope, options.strict)
     if (!(result instanceof __PHP_Incomplete_Class)) {
-      invariant(result.unserialize, `unserialize not found on class when processing '${name}'`)
+      if (!result.unserialize) {
+        throw new Error(`unserialize not found on class when processing '${name}'`)
+      }
+
       result.unserialize(payload)
     }
     return result

@@ -1,4 +1,4 @@
-import type { Config } from 'jest';
+import type { Config } from 'jest'
 
 // eslint-disable-next-line import/no-unused-modules
 export default {
@@ -11,6 +11,5 @@ export default {
   transform: {
     '\\.[jt]s$': 'babel-jest',
   },
-  setupFiles: ['dotenv/config'],
   setupFilesAfterEnv: ['./tests/setup.ts'],
-} satisfies Config;
+} satisfies Config
