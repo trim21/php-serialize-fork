@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import { test, expect } from '@jest/globals'
 
 import serializeForTests from './serialize'
+import serialize from '../src/serialize'
 
 test('serialize compat with php', async () => {
   const givenOutput: string = await new Promise((resolve, reject) => {
@@ -24,4 +25,9 @@ test('serialize compat with php', async () => {
   for (let i = 0, { length } = output; i < length; i += 1) {
     expect(output[i]).toEqual(ourOutput[i])
   }
+})
+
+
+test('serialize map', () => {
+  expect(serialize(new Map([[1, 'q']]))).toBe('a:1:{i:1;s:1:"q";}')
 })

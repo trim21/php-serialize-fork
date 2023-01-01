@@ -1,4 +1,3 @@
-import invariant from 'assert'
 import { isInteger, getByteLength } from './helpers'
 
 function getClassNamespace(item: any, scope: Record<string, any>) {
@@ -48,10 +47,18 @@ export default function serialize(
     return `a:${serializeObject(item, scope)}`
   }
 
+  if (item instanceof Map) {
+    return `a:${item.size}:{` + Array.from(item.entries()).map(([value, key]) => {
+      return `${serialize(value, scope)}${serialize(key, scope)}`
+    }) + '}'
+  }
+
   const constructorName = getClassNamespace(item, scope)
   if (typeof item.serialize === 'function') {
     const serialized = item.serialize()
-    invariant(typeof serialized === 'string', `${item.constructor.name}.serialize should return a string`)
+    if (typeof serialized !== 'string') {
+      throw new TypeError(`${item.constructor.name}.serialize should return a string`)
+    }
     return `C:${constructorName.length}:"${constructorName}":${getByteLength(serialized, options)}:{${serialized}}`
   }
   return `O:${constructorName.length}:"${constructorName}":${serializeObject(item, scope)}`
