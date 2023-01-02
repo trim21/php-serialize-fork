@@ -1,5 +1,4 @@
-// eslint-disable-next-line import/no-cycle
-import { Options } from './unserialize'
+import type { Options } from './unserialize'
 
 export type ParserType =
   | 'null'
