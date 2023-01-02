@@ -1,6 +1,5 @@
 import Parser from './parser'
 import { isInteger, getClass, getIncompleteClass, __PHP_Incomplete_Class } from './helpers'
-import * as console from 'console'
 
 export type Options = {
   strict: boolean
