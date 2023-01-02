@@ -2,15 +2,15 @@ import { isInteger, getByteLength } from './helpers'
 
 function getClassNamespace(item: any, scope: Record<string, any>) {
   return (
-    Object.keys(scope).find(key => item instanceof scope[key]) || item.__PHP_Incomplete_Class_Name || item.constructor.name
+    Object.keys(scope).find((key) => item instanceof scope[key]) || item.__PHP_Incomplete_Class_Name || item.constructor.name
   )
 }
 
 function serializeObject(item: any, scope: Record<string, any>): string {
   const processed = Array.isArray(item)
     ? item.map((value, index) => `${serialize(index, scope)}${serialize(value, scope)}`)
-    : Object.keys(item).map(key => `${serialize(key, scope)}${serialize(item[key], scope)}`)
-  const { length } = processed.filter(entry => typeof entry !== 'undefined')
+    : Object.keys(item).map((key) => `${serialize(key, scope)}${serialize(item[key], scope)}`)
+  const { length } = processed.filter((entry) => typeof entry !== 'undefined')
   return `${length}:{${processed.join('')}}`
 }
 
@@ -48,9 +48,13 @@ export default function serialize(
   }
 
   if (item instanceof Map) {
-    return `a:${item.size}:{` + Array.from(item.entries()).map(([value, key]) => {
-      return `${serialize(value, scope)}${serialize(key, scope)}`
-    }) + '}'
+    return (
+      `a:${item.size}:{` +
+      Array.from(item.entries()).map(([value, key]) => {
+        return `${serialize(value, scope)}${serialize(key, scope)}`
+      }) +
+      '}'
+    )
   }
 
   const constructorName = getClassNamespace(item, scope)

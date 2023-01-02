@@ -1,9 +1,5 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": [
-    "github>Trim21/renovate-config",
-    "github>Trim21/renovate-config:js",
-    "github>Trim21/renovate-config:monthly"
-  ],
+  "extends": ["github>Trim21/renovate-config", "github>Trim21/renovate-config:js", "github>Trim21/renovate-config:monthly"],
   "rangeStrategy": "bump"
 }
