@@ -40,6 +40,9 @@
   "dependencies": {
     "eslint-plugin-prettier": "^4.2.1"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">= 16"
   }
