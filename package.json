@@ -20,13 +20,13 @@
   "author": "steelbrain",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/steelbrain/php-serialize/issues"
+    "url": "https://github.com/trim21/php-serialize/issues"
   },
   "files": [
     "src/*",
     "lib/*"
   ],
-  "homepage": "https://github.com/steelbrain/php-serialize#readme",
+  "homepage": "https://github.com/trim21/php-serialize#readme",
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/preset-env": "^7.20.2",
