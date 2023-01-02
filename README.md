@@ -3,7 +3,7 @@
 It also supports `Serializable` objects decode. Here's how you can use them.
 
 ```js
-import { serialize, unserialize } from 'php-serialize'
+import { serialize, unserialize } from '@trim21/php-serialize'
 
 class User {
   constructor({ name, age }) {
