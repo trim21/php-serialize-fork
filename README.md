@@ -29,10 +29,9 @@ const serializedForNamespace = serialize(steel, {
 })
 // ^ Above code will serialize User class to given name
 
-
 // If you need to serialize to php array with int key
 
-serialize(new Map([[1, 'q']])) 
+serialize(new Map([[1, 'q']]))
 ```
 
 #### API
