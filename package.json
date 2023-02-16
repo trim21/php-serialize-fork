@@ -13,10 +13,7 @@
     "prebuild": "rm -rf lib",
     "build": "tsc"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/steelbrain/php-serialize.git"
-  },
+  "repository": "trim21/php-serialize",
   "author": "steelbrain",
   "license": "MIT",
   "bugs": {
