@@ -30,17 +30,21 @@ export default class Parser {
     this.index = index
     this.options = options
   }
+
   error(message: string = 'Syntax Error') {
     return new Error(`${message} at index ${this.index} while unserializing payload`)
   }
+
   advance(index: number) {
     this.index += index
   }
+
   readAhead(index: number) {
     const contents = this.peekAhead(index)
     this.index += index
     return contents
   }
+
   readUntil(expected: string) {
     const index = this.contents.indexOf(expected, this.index)
     if (index === -1) {
@@ -48,9 +52,11 @@ export default class Parser {
     }
     return this.readAhead(index - this.index)
   }
+
   peekAhead(index: number): string {
     return this.contents.toString(this.options.encoding, this.index, this.index + index)
   }
+
   seekExpected(contents: string) {
     const slice = this.readAhead(contents.length)
     if (slice !== contents) {
@@ -58,6 +64,7 @@ export default class Parser {
       throw this.error(`Expected '${contents}'`)
     }
   }
+
   getType(): ParserType {
     const [type, ps] = this.readAhead(2)
     const parserType = PARSER_TYPES[type]
@@ -70,6 +77,7 @@ export default class Parser {
     }
     return parserType
   }
+
   getLength(): number {
     const length = parseInt(this.readUntil(':'), 10)
     if (Number.isNaN(length)) {
@@ -77,6 +85,7 @@ export default class Parser {
     }
     return length
   }
+
   getByLength<T>(startSequence: string, endSequence: string, callback: (length: number) => T): T {
     const length = this.getLength()
     this.seekExpected(`:${startSequence}`)

@@ -1,4 +1,3 @@
-// eslint-disable-next-line camelcase,@typescript-eslint/class-name-casing
 export class __PHP_Incomplete_Class {
   __PHP_Incomplete_Class_Name: string
 

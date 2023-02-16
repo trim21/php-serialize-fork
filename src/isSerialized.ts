@@ -50,7 +50,7 @@ export default function isSerialized(givenItem: string, strict: boolean = false)
         if (item.substr(-2, 1) !== '"') {
           return false
         }
-      } else if (item.indexOf('"') === -1) {
+      } else if (!item.includes('"')) {
         return false
       }
 

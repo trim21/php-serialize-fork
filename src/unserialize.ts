@@ -1,7 +1,7 @@
 import Parser from './parser'
 import { isInteger, getClass, getIncompleteClass, __PHP_Incomplete_Class } from './helpers'
 
-export type Options = {
+export interface Options {
   strict: boolean
   encoding: BufferEncoding
 }
@@ -14,7 +14,6 @@ function getClassReference(className: string, scope: Record<string, any>, strict
   }
 
   if (classReference) {
-    // @ts-ignore
     container = new (getClass(classReference.prototype))()
   } else {
     container = getIncompleteClass(className)
@@ -27,7 +26,7 @@ function unserializePairs(
   length: number,
   scope: Record<string, any>,
   options: Options,
-): { key: any; value: any }[] {
+): Array<{ key: any; value: any }> {
   const pairs: ReturnType<typeof unserializePairs> = []
   for (let i = 0; i < length; i += 1) {
     const key = unserializeItem(parser, scope, options)
@@ -74,7 +73,7 @@ function unserializeItem(parser: Parser, scope: Record<string, any>, options: Op
     const result = getClassReference(name, scope, options.strict)
 
     const PREFIX_PRIVATE = `\u0000${name}\u0000`
-    const PREFIX_PROTECTED = `\u0000*\u0000`
+    const PREFIX_PROTECTED = '\u0000*\u0000'
     pairs.forEach(({ key, value }) => {
       if (key.startsWith(PREFIX_PRIVATE)) {
         // Private field
